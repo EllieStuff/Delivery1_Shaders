@@ -7,9 +7,11 @@
 	TEXTURE2D_SAMPLER2D(_MainTex, sampler_MainTex);
 	
 	float _intensity;
+	float _blend;
 	float4 Frag(VaryingsDefault i) : SV_Target
 	{
-		float4 color = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.texcoord);
+		float4 originalColor = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.texcoord);
+		float4 color = originalColor;
 
 		for (float index = -1; index < 2; index++) {
 			float2 uv = i.texcoord + float2(0, (index / 9 - 0.5) * _intensity);
@@ -20,6 +22,8 @@
 			float2 uv = i.texcoord + float2((index / 9 - 0.5) * _intensity, 0);
 			color += SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, uv) / 16;
 		}
+
+		color.rgb = lerp(originalColor.rgb, color.rgb, _blend.xxx);
 
 		return color;
 	}

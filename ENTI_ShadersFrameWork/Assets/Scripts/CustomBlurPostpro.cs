@@ -13,9 +13,10 @@ using UnityEngine.Rendering.PostProcessing;
                                     //Forth parameter that allows to decide if the effect should be shown in scene view
 public sealed class CustomBlurPostproSettings : PostProcessEffectSettings
 {
-    [Range(0f, 1f), Tooltip("Effect Intensity.")]
-    public FloatParameter blend = new FloatParameter { value = 0.0f }; //Custom parameter class, full list at: /PostProcessing/Runtime/
-                                                                        //The default value is important, since is the one that will be used for blending if only 1 of volume has this effect
+    [Range(0f, 0.1f), Tooltip("Effect Intensity.")]
+    public FloatParameter intensity = new FloatParameter { value = 0.02f };
+    [Range(0f, 1.0f), Tooltip("Effect Blend.")]
+    public FloatParameter blend = new FloatParameter { value = 0.02f };
 }
 
 public class CustomBlurPostpro : PostProcessEffectRenderer<CustomBlurPostproSettings>//<T> is the setting type
@@ -25,7 +26,8 @@ public class CustomBlurPostpro : PostProcessEffectRenderer<CustomBlurPostproSett
         //We get the actual shader property sheet
         var sheet = context.propertySheets.Get(Shader.Find("Hidden/Custom/Blur"));
         //Set the uniform value for our shader
-        sheet.properties.SetFloat("_intensity", settings.blend);
+        sheet.properties.SetFloat("_intensity", settings.intensity);
+        sheet.properties.SetFloat("_blend", settings.blend);
 
         //We render the scene as a full screen triangle applying the specified shader
         context.command.BlitFullscreenTriangle(context.source, context.destination, sheet, 0);

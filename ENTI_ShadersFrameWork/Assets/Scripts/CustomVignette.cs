@@ -13,7 +13,7 @@ using UnityEngine.Rendering.PostProcessing;
                                     //Forth parameter that allows to decide if the effect should be shown in scene view
 public sealed class VignetteSettings : PostProcessEffectSettings
 {
-    [Range(0.0f, 5.0f), Tooltip("Effect Intensity.")]
+    [Range(0.0f, 10.0f), Tooltip("Effect Intensity.")]
     public FloatParameter intensity = new FloatParameter { value = 0.8f };
 
     [Range(0.0f, 5.0f), Tooltip("Effect Strength.")]
@@ -21,6 +21,9 @@ public sealed class VignetteSettings : PostProcessEffectSettings
 
     [Range(0, 5), Tooltip("Effect Roundness.")]
     public IntParameter roundness = new IntParameter { value = 1 };
+
+    [Range(0.0f, 1.0f), Tooltip("Effect Blend.")]
+    public FloatParameter blend = new FloatParameter { value = 1.0f };
 }
 
 public class CustomPostproVignette : PostProcessEffectRenderer<VignetteSettings>//<T> is the setting type
@@ -34,6 +37,7 @@ public class CustomPostproVignette : PostProcessEffectRenderer<VignetteSettings>
         sheet.properties.SetFloat("_intensity", settings.intensity);
         sheet.properties.SetFloat("_strength", settings.strength);
         sheet.properties.SetFloat("_roundness", settings.roundness);
+        sheet.properties.SetFloat("_blend", settings.blend);
 
         //We render the scene as a full screen triangle applying the specified shader
         context.command.BlitFullscreenTriangle(context.source, context.destination, sheet, 0);
