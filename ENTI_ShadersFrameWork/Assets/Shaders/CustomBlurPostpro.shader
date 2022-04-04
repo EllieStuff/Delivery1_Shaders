@@ -9,39 +9,18 @@
 	float _intensity;
 	float4 Frag(VaryingsDefault i) : SV_Target
 	{
-		int power = 2;
-
 		float4 color = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.texcoord);
-		//float4 color2 = color * 2;
-		//float2 coord = i.texcoord + float2(1, 1);
-		//for (int i = -1; i < 2; i++) {
-		//	if (i == 0)
-		//		i.texcoord = pow(i.texcoord, power + 1);
-		//	else
-		//		i.texcoord = pow(i.texcoord + float2(i, 0), power);
-		//}
-		//for (int i = -1; i < 2; i++) {
-		//	if (i == 0)
-		//		i.texcoord = pow(i.texcoord, power + 1);
-		//	else
-		//		i.texcoord = pow(i.texcoord + float2(0, i), power);
-		//}
-		
-		float horVal;
-		float vertVal;
 
-		i.texcoord = pow(i.texcoord, power + 1);
-		i.texcoord = pow(i.texcoord - float2(1, 0), power);
-		i.texcoord = pow(i.texcoord + float2(1, 0), power);
+		for (float index = -1; index < 2; index++) {
+			float2 uv = i.texcoord + float2(0, (index / 9 - 0.5) * _intensity);
+			color += SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, uv) / 16;
+		}
 
-		i.texcoord = pow(i.texcoord, power + 1);
-		i.texcoord = pow(i.texcoord - float2(0, 1), power);
-		i.texcoord = pow(i.texcoord + float2(0, 1), power);
+		for (float index = -1; index < 2; index++) {
+			float2 uv = i.texcoord + float2((index / 9 - 0.5) * _intensity, 0);
+			color += SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, uv) / 16;
+		}
 
-		float4 color2 = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.texcoord);
-
-		color.rgb = lerp(color.rgb, color2.rgb, _intensity.xxx);
-		// Return the result
 		return color;
 	}
 	ENDHLSL
