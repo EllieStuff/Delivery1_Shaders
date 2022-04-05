@@ -38,6 +38,9 @@ MonoBehaviour:
   enabled:
     overrideState: 1
     value: 1
+  intensity:
+    overrideState: 0
+    value: 0.02
   blend:
     overrideState: 1
     value: 1
@@ -58,11 +61,11 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   intensity:
-    overrideState: 0
-    value: 0.02
+    overrideState: 1
+    value: 0.0332
   blend:
-    overrideState: 0
-    value: 0.02
+    overrideState: 1
+    value: 1
 --- !u!114 &-6563948284262343366
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -117,6 +120,9 @@ MonoBehaviour:
   enabled:
     overrideState: 1
     value: 1
+  intensity:
+    overrideState: 0
+    value: 0.02
   blend:
     overrideState: 1
     value: 0.606
@@ -266,6 +272,9 @@ MonoBehaviour:
   enabled:
     overrideState: 1
     value: 1
+  intensity:
+    overrideState: 0
+    value: 0.02
   blend:
     overrideState: 1
     value: 1
@@ -285,6 +294,9 @@ MonoBehaviour:
   enabled:
     overrideState: 1
     value: 1
+  intensity:
+    overrideState: 0
+    value: 0.02
   blend:
     overrideState: 1
     value: 0.024
@@ -304,6 +316,9 @@ MonoBehaviour:
   enabled:
     overrideState: 1
     value: 1
+  intensity:
+    overrideState: 0
+    value: 0.02
   blend:
     overrideState: 1
     value: 0.143
