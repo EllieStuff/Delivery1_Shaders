@@ -1,5 +1,27 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7915168927843044209
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: CustomBlurPostproSettings
+  m_EditorClassIdentifier: Assembly-CSharp::CustomBlurPostproSettings
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  intensity:
+    overrideState: 1
+    value: 0.0512
+  blend:
+    overrideState: 1
+    value: 0.589
 --- !u!114 &-6876463516251941312
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -19,6 +41,28 @@ MonoBehaviour:
   blend:
     overrideState: 1
     value: 1
+--- !u!114 &-6782045994909202670
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: CustomBlurPostproSettings
+  m_EditorClassIdentifier: Assembly-CSharp::CustomBlurPostproSettings
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  intensity:
+    overrideState: 0
+    value: 0.02
+  blend:
+    overrideState: 0
+    value: 0.02
 --- !u!114 &-6563948284262343366
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -118,8 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
   - {fileID: 934147405638611057}
-  - {fileID: -1560795684533982396}
-  - {fileID: 7743533207551701770}
+  - {fileID: -6782045994909202670}
 --- !u!114 &934147405638611057
 MonoBehaviour:
   m_ObjectHideFlags: 3

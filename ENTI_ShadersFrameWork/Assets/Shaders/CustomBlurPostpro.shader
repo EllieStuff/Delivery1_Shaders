@@ -13,15 +13,14 @@
 		float4 originalColor = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.texcoord);
 		float4 color = originalColor;
 
-		for (float index = -1; index < 2; index++) {
-			float2 uv = i.texcoord + float2(0, (index / 9 - 0.5) * _intensity);
-			color += SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, uv) / 16;
+		int iterations = 10;
+
+		for (float index = -1; index < iterations; index++) {
+			float2 uv = i.texcoord + float2(0, ((index / iterations-1) - 0.5) * _intensity);
+			color += SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, uv);
 		}
 
-		for (float index = -1; index < 2; index++) {
-			float2 uv = i.texcoord + float2((index / 9 - 0.5) * _intensity, 0);
-			color += SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, uv) / 16;
-		}
+		color = color / iterations;
 
 		color.rgb = lerp(originalColor.rgb, color.rgb, _blend.xxx);
 

@@ -16,7 +16,7 @@ public sealed class CustomBlurPostproSettings : PostProcessEffectSettings
     [Range(0f, 0.1f), Tooltip("Effect Intensity.")]
     public FloatParameter intensity = new FloatParameter { value = 0.02f };
     [Range(0f, 1.0f), Tooltip("Effect Blend.")]
-    public FloatParameter blend = new FloatParameter { value = 0.02f };
+    public FloatParameter blend = new FloatParameter { value = 1f };
 }
 
 public class CustomBlurPostpro : PostProcessEffectRenderer<CustomBlurPostproSettings>//<T> is the setting type
