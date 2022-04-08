@@ -9,20 +9,22 @@ Shader "Hidden/Custom/Vignette"
 
 	float _intensity;
 	float _strength;
+	float2 _center;
+	float4 _colorInside;
 	int _roundness;
 	float _blend;
 	float4 Frag(VaryingsDefault i) : SV_Target
 	{
 		float4 originalColor = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.texcoord);
 
-		float2 darkCoord = (i.texcoord * 2.0f) - 1.0f;
+		float2 darkCoord = ((i.texcoord + _center) * 2.0f) - 1.0f;
 		darkCoord = pow(abs(darkCoord), _roundness); //Squares Vignette shape --> //For some reason it doesn't work with variables???
 		float factor = length(darkCoord) * _intensity;
 		factor = pow(factor, _strength); //Makes transition stronger
 		//factor = 1 - clamp(0, 1, factor);
 		factor = smoothstep(1, -1, factor); //Can use instead of clamp
 
-		float4 color = originalColor * factor;
+		float4 color = originalColor * _colorInside * factor;
 		color.rgb = lerp(originalColor.rgb, color.rgb, _blend.xxx);
 
 		//// Return the result

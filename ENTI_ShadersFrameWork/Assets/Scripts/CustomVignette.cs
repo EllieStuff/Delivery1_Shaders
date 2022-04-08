@@ -13,16 +13,22 @@ using UnityEngine.Rendering.PostProcessing;
                                     //Forth parameter that allows to decide if the effect should be shown in scene view
 public sealed class VignetteSettings : PostProcessEffectSettings
 {
-    [Range(0.0f, 10.0f), Tooltip("Effect Intensity.")]
+    [Range(0.0f, 10.0f), Tooltip("Vignette Effect Intensity.")]
     public FloatParameter intensity = new FloatParameter { value = 0.8f };
 
-    [Range(0.0f, 5.0f), Tooltip("Effect Strength.")]
+    [Range(0.0f, 5.0f), Tooltip("Vignette Effect Strength.")]
     public FloatParameter strength = new FloatParameter { value = 1.0f };
 
-    [Range(0, 5), Tooltip("Effect Roundness.")]
+    [Tooltip("Vignette Effect Center")]
+    public Vector2Parameter center = new Vector2Parameter { value = new Vector2(0, 0) };
+    
+    [Tooltip("Vignette Effect ColorInside")]
+    public ColorParameter colorInside = new ColorParameter { value = new Color(1, 1, 1, 1) };
+
+    [Range(1, 5), Tooltip("Vignette Effect Roundness.")]
     public IntParameter roundness = new IntParameter { value = 1 };
 
-    [Range(0.0f, 1.0f), Tooltip("Effect Blend.")]
+    [Range(0.0f, 1.0f), Tooltip("Vignette Effect Blend.")]
     public FloatParameter blend = new FloatParameter { value = 1.0f };
 }
 
@@ -36,6 +42,8 @@ public class CustomPostproVignette : PostProcessEffectRenderer<VignetteSettings>
         //Set the uniform value for our shader
         sheet.properties.SetFloat("_intensity", settings.intensity);
         sheet.properties.SetFloat("_strength", settings.strength);
+        sheet.properties.SetVector("_center", settings.center);
+        sheet.properties.SetColor("_colorInside", settings.colorInside);
         sheet.properties.SetFloat("_roundness", settings.roundness);
         sheet.properties.SetFloat("_blend", settings.blend);
 
