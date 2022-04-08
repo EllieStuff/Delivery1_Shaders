@@ -22,6 +22,12 @@ MonoBehaviour:
   blend:
     overrideState: 1
     value: 0.589
+  deviation:
+    overrideState: 0
+    value: 0.02
+  iterations:
+    overrideState: 0
+    value: 10
 --- !u!114 &-6876463516251941312
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -44,6 +50,12 @@ MonoBehaviour:
   blend:
     overrideState: 1
     value: 1
+  deviation:
+    overrideState: 0
+    value: 0.02
+  iterations:
+    overrideState: 0
+    value: 10
 --- !u!114 &-6782045994909202670
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -66,6 +78,12 @@ MonoBehaviour:
   blend:
     overrideState: 1
     value: 1
+  deviation:
+    overrideState: 0
+    value: 0.02
+  iterations:
+    overrideState: 0
+    value: 10
 --- !u!114 &-6563948284262343366
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -104,6 +122,34 @@ MonoBehaviour:
   blend:
     overrideState: 0
     value: 0
+--- !u!114 &-2915878421212670517
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: CustomBlurPostproSettings
+  m_EditorClassIdentifier: Assembly-CSharp::CustomBlurPostproSettings
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  intensity:
+    overrideState: 1
+    value: 0.0243
+  blend:
+    overrideState: 1
+    value: 1
+  deviation:
+    overrideState: 1
+    value: 0.02652
+  iterations:
+    overrideState: 1
+    value: 6
 --- !u!114 &-2865829212919039176
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -126,6 +172,12 @@ MonoBehaviour:
   blend:
     overrideState: 1
     value: 1
+  deviation:
+    overrideState: 0
+    value: 0.02
+  iterations:
+    overrideState: 0
+    value: 10
 --- !u!114 &-1777139091219470798
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -148,6 +200,12 @@ MonoBehaviour:
   blend:
     overrideState: 1
     value: 0.606
+  deviation:
+    overrideState: 0
+    value: 0.02
+  iterations:
+    overrideState: 0
+    value: 10
 --- !u!114 &-1560795684533982396
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -190,8 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
   - {fileID: 934147405638611057}
-  - {fileID: -2865829212919039176}
-  - {fileID: 1263097460449800335}
+  - {fileID: -2915878421212670517}
 --- !u!114 &934147405638611057
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -329,6 +386,12 @@ MonoBehaviour:
   blend:
     overrideState: 1
     value: 1
+  deviation:
+    overrideState: 0
+    value: 0.02
+  iterations:
+    overrideState: 0
+    value: 10
 --- !u!114 &6902896151536327774
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -351,6 +414,12 @@ MonoBehaviour:
   blend:
     overrideState: 1
     value: 0.024
+  deviation:
+    overrideState: 0
+    value: 0.02
+  iterations:
+    overrideState: 0
+    value: 10
 --- !u!114 &6910531718607130129
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -373,6 +442,40 @@ MonoBehaviour:
   blend:
     overrideState: 1
     value: 0.143
+  deviation:
+    overrideState: 0
+    value: 0.02
+  iterations:
+    overrideState: 0
+    value: 10
+--- !u!114 &7646591182452543102
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: CustomBlurPostproSettings
+  m_EditorClassIdentifier: Assembly-CSharp::CustomBlurPostproSettings
+  active: 0
+  enabled:
+    overrideState: 1
+    value: 1
+  intensity:
+    overrideState: 1
+    value: 0.0439
+  blend:
+    overrideState: 0
+    value: 1
+  deviation:
+    overrideState: 0
+    value: 0.02
+  iterations:
+    overrideState: 0
+    value: 10
 --- !u!114 &7743533207551701770
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -395,3 +498,9 @@ MonoBehaviour:
   blend:
     overrideState: 1
     value: 1
+  deviation:
+    overrideState: 0
+    value: 0.02
+  iterations:
+    overrideState: 0
+    value: 10

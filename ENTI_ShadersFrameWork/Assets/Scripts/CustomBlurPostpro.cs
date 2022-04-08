@@ -17,6 +17,10 @@ public sealed class CustomBlurPostproSettings : PostProcessEffectSettings
     public FloatParameter intensity = new FloatParameter { value = 0.02f };
     [Range(0f, 1.0f), Tooltip("Effect Blend.")]
     public FloatParameter blend = new FloatParameter { value = 1f };
+    [Range(0.01f, 0.033f), Tooltip("Deviation.")]
+    public FloatParameter deviation = new FloatParameter { value = 0.02f };
+    [Range(2, 20), Tooltip("Iterations.")]
+    public IntParameter iterations = new IntParameter { value = 10 };
 }
 
 public class CustomBlurPostpro : PostProcessEffectRenderer<CustomBlurPostproSettings>//<T> is the setting type
@@ -28,6 +32,8 @@ public class CustomBlurPostpro : PostProcessEffectRenderer<CustomBlurPostproSett
         //Set the uniform value for our shader
         sheet.properties.SetFloat("_intensity", settings.intensity);
         sheet.properties.SetFloat("_blend", settings.blend);
+        sheet.properties.SetFloat("_deviation", settings.deviation);
+        sheet.properties.SetFloat("_iterations", settings.iterations);
 
         //We render the scene as a full screen triangle applying the specified shader
         context.command.BlitFullscreenTriangle(context.source, context.destination, sheet, 0);
