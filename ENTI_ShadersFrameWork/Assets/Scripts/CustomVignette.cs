@@ -22,6 +22,9 @@ public sealed class VignetteSettings : PostProcessEffectSettings
     [Tooltip("Vignette Effect Center")]
     public Vector2Parameter center = new Vector2Parameter { value = new Vector2(0, 0) };
     
+    [Tooltip("Vignette Effect AffectedAxis")]
+    public Vector2Parameter axisEffect = new Vector2Parameter { value = new Vector2(1, 1) };
+    
     [Tooltip("Vignette Effect ColorInside")]
     public ColorParameter colorInside = new ColorParameter { value = new Color(1, 1, 1, 1) };
 
@@ -43,6 +46,7 @@ public class CustomPostproVignette : PostProcessEffectRenderer<VignetteSettings>
         sheet.properties.SetFloat("_intensity", settings.intensity);
         sheet.properties.SetFloat("_strength", settings.strength);
         sheet.properties.SetVector("_center", settings.center);
+        sheet.properties.SetVector("_axisEffect", settings.axisEffect);
         sheet.properties.SetColor("_colorInside", settings.colorInside);
         sheet.properties.SetFloat("_roundness", settings.roundness);
         sheet.properties.SetFloat("_blend", settings.blend);
