@@ -5,7 +5,7 @@
 		 _objectColor("Main color",Color) = (0,0,0,1)
 		 _ambientInt("Ambient int", Range(0,1)) = 0.25
 		 _ambientColor("Ambient Color", Color) = (0,0,0,1)
-		 _materialQ("Material Q", Range(-10, 10)) = 1
+		 _materialQ("Material Q", Range(0, 1)) = 1
 
 		 _diffuseInt("Diffuse int", Range(0,1)) = 1
 		_scecularExp("Specular exponent",Float) = 2.0
@@ -149,7 +149,7 @@
 				float geometry = dot(i.worldNormal, lightDir) * dot(i.worldNormal, viewVec);
 				float distribution = alpha2 / (PI * pow(pow(dot(i.worldNormal, halfVec), 2) * (alpha2 - 1) + 1, 2));
 				float BRDF = (fresnel * geometry * distribution) / (4 * dot(i.worldNormal, lightDir) * dot(i.worldNormal, viewVec));
-				finalColor += clamp(float4(_pointLightIntensity * (difuseComp + specularComp + BRDF), 1), 0, 1);
+				finalColor += clamp(float4(_pointLightIntensity * (difuseComp + BRDF), 1), 0, 1);
 				//finalColor += clamp(float4(_pointLightIntensity * (difuseComp + specularComp), 1), 0, 1);
 				 
 
