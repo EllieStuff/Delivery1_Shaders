@@ -8,10 +8,11 @@
 
 	#define E 2.71828182846
 
-	int _iterations;
-	float _deviation;
 	float _intensity;
 	float _blend;
+	float _deviation;
+	float2 _dir;
+	int _iterations;
 
 	float4 Frag(VaryingsDefault i) : SV_Target
 	{
@@ -22,7 +23,7 @@
 		for (float index = -1; index < _iterations; index++) 
 		{
 			float offset = ((index / _iterations - 1) - 0.5) * _intensity;
-			float2 uv = i.texcoord + float2(0, offset);
+			float2 uv = i.texcoord + float2(_dir.x * offset, _dir.y * offset);
 			float devSquared = _deviation * _deviation;
 			float gauss = (1 / sqrt(2 * PI * devSquared)) * pow(E, -((offset * offset) / (2 * devSquared)));
 			sum += gauss;

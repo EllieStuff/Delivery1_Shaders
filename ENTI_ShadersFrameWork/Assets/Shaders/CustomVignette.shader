@@ -12,12 +12,13 @@ Shader "Hidden/Custom/Vignette"
 	float2 _center;
 	float2 _axisEffect;
 	float4 _colorInside;
+	float4 _colorOutside;
 	int _roundness;
 	float _blend;
+	//float factor;
 	float4 Frag(VaryingsDefault i) : SV_Target
 	{
 		float4 originalColor = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.texcoord);
-		float4 targetColor = float4(1, 0, 1, 1);
 
 		float2 darkCoord = ((i.texcoord + _center) * 2.0f) - 1.0f;
 		darkCoord = pow(abs(darkCoord), _roundness); //Squares Vignette shape --> //For some reason it doesn't work with variables???
@@ -28,10 +29,15 @@ Shader "Hidden/Custom/Vignette"
 
 		float4 color = originalColor * _colorInside * factor;
 		color.rgb = lerp(originalColor.rgb, color.rgb, _blend.xxx);
-		float factorColorThreshold = 0.1;
+		float factorColorThreshold = 0.4;
 		//if(color.r < colorThreshold && color.g < colorThreshold && color.b < colorThreshold)
-		if(factor < factorColorThreshold)
-			color.rgb = lerp(color.rgb, targetColor.rgb, 0.4);
+		
+		float dist = distance(float2(0.5, 0.5), i.texcoord);
+		color.rgb = lerp(color.rgb, _colorOutside.rgb, dist);
+		//if (factor < factorColorThreshold) {
+		//	color.rgb = lerp(color.rgb, _colorOutside.rgb, 1 - factor);
+		//	//color = _colorOutside;
+		//}
 
 		//// Return the result
 		return color;

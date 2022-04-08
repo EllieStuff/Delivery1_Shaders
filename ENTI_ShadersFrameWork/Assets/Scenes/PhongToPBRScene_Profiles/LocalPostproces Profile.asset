@@ -322,8 +322,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
   - {fileID: 934147405638611057}
-  - {fileID: -254654898293240025}
-  - {fileID: -3782087552292174128}
+  - {fileID: 8561569031596009787}
+  - {fileID: 1285762446610228780}
 --- !u!114 &934147405638611057
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -404,6 +404,46 @@ MonoBehaviour:
   colorInside:
     overrideState: 0
     value: {r: 1, g: 1, b: 1, a: 1}
+  roundness:
+    overrideState: 1
+    value: 1
+  blend:
+    overrideState: 1
+    value: 1
+--- !u!114 &1285762446610228780
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: VignetteSettings
+  m_EditorClassIdentifier: Assembly-CSharp::VignetteSettings
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  intensity:
+    overrideState: 1
+    value: 1.14
+  strength:
+    overrideState: 1
+    value: 1.99
+  center:
+    overrideState: 1
+    value: {x: -0.56, y: -0.04}
+  axisEffect:
+    overrideState: 1
+    value: {x: 0, y: 0}
+  colorInside:
+    overrideState: 1
+    value: {r: 0.38274932, g: 1, b: 0.43493104, a: 1}
+  colorOutside:
+    overrideState: 1
+    value: {r: 1, g: 0.07142854, b: 0.07142854, a: 0.12156863}
   roundness:
     overrideState: 1
     value: 1
@@ -588,3 +628,31 @@ MonoBehaviour:
   iterations:
     overrideState: 0
     value: 10
+--- !u!114 &8561569031596009787
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: CustomBlurPostproSettings
+  m_EditorClassIdentifier: Assembly-CSharp::CustomBlurPostproSettings
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  intensity:
+    overrideState: 1
+    value: 0.0234
+  blend:
+    overrideState: 1
+    value: 0.252
+  deviation:
+    overrideState: 1
+    value: 0.015
+  iterations:
+    overrideState: 1
+    value: 20

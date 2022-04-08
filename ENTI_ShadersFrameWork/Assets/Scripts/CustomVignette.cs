@@ -27,6 +27,9 @@ public sealed class VignetteSettings : PostProcessEffectSettings
     
     [Tooltip("Vignette Effect ColorInside")]
     public ColorParameter colorInside = new ColorParameter { value = new Color(1, 1, 1, 1) };
+    
+    [Tooltip("Vignette Effect ColorOutside")]
+    public ColorParameter colorOutside = new ColorParameter { value = new Color(0, 0, 0, 1) };
 
     [Range(1, 5), Tooltip("Vignette Effect Roundness.")]
     public IntParameter roundness = new IntParameter { value = 1 };
@@ -48,8 +51,10 @@ public class CustomPostproVignette : PostProcessEffectRenderer<VignetteSettings>
         sheet.properties.SetVector("_center", settings.center);
         sheet.properties.SetVector("_axisEffect", settings.axisEffect);
         sheet.properties.SetColor("_colorInside", settings.colorInside);
+        sheet.properties.SetColor("_colorOutside", settings.colorOutside);
         sheet.properties.SetFloat("_roundness", settings.roundness);
         sheet.properties.SetFloat("_blend", settings.blend);
+        //Debug.Log("Factor: " + sheet.properties.GetFloat("factor"));
 
         //We render the scene as a full screen triangle applying the specified shader
         context.command.BlitFullscreenTriangle(context.source, context.destination, sheet, 0);
