@@ -19,14 +19,14 @@
 		float4 color = originalColor;
 		float sum = _iterations;
 
-		for (float index = -1; index < _iterations; index++) {
+		for (float index = -1; index < _iterations; index++) 
+		{
 			float offset = ((index / _iterations - 1) - 0.5) * _intensity;
 			float2 uv = i.texcoord + float2(0, offset);
 			float devSquared = _deviation * _deviation;
 			float gauss = (1 / sqrt(2 * PI * devSquared)) * pow(E, -((offset * offset) / (2 * devSquared)));
 			sum += gauss;
 			color += SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, uv) * gauss;
-
 		}
 
 		color = color / sum;
