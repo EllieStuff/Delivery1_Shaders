@@ -6,13 +6,14 @@ using UnityEngine.UI;
 public class SceneScript : MonoBehaviour
 {
     public Material blurMat;
-
+    public MeshRenderer vertexAnimColumn;
 
     private Material savedMat;
     private Color bloomColor;
     private float bloomIntensity;
     private float intensity;
     private float blend;
+    private Material savedVertexAnimMat;
 
     [SerializeField] private float timer = 0;
     [SerializeField] private bool incrementOrDecrement;
@@ -21,6 +22,8 @@ public class SceneScript : MonoBehaviour
     private void Start()
     {
         savedMat = new Material(blurMat);
+        savedVertexAnimMat = new Material(vertexAnimColumn.material);
+        vertexAnimColumn.material = savedVertexAnimMat;
 
         EndColor = Color.red;
 
@@ -62,5 +65,7 @@ public class SceneScript : MonoBehaviour
         savedMat.SetFloat("_BloomGlow", bloomIntensity);
         savedMat.SetFloat("_intensity", intensity);
         savedMat.SetFloat("_blend", blend);
+
+        savedVertexAnimMat.SetFloat("_time", Time.timeSinceLevelLoad);
     }
 }
