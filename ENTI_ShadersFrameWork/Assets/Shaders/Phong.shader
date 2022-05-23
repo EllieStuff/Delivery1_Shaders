@@ -2,13 +2,16 @@
 {
 	Properties
 	{
-		_MainTex("Main Texture", 2D) = "" {}
-		 _objectColor("Main color",Color) = (0,0,0,1)
-		 _ambientInt("Ambient int", Range(0,1)) = 0.25
-		 _ambientColor("Ambient Color", Color) = (0,0,0,1)
-		 _materialQ("Material Q", Range(0, 1)) = 1
 
-		 _diffuseInt("Diffuse int", Range(0,1)) = 1
+		_MainTex("Main Texture", 2D) = "" {}
+		_objectColor("Main color",Color) = (0,0,0,1)
+		_alpha("Alpha", Range(0,1)) = 1
+		
+		_ambientInt("Ambient int", Range(0,1)) = 0.25
+		_ambientColor("Ambient Color", Color) = (0,0,0,1)
+		_materialQ("Material Q", Range(0, 1)) = 1
+
+		_diffuseInt("Diffuse int", Range(0,1)) = 1
 		_scecularExp("Specular exponent",Float) = 2.0
 
 		_pointLightPos("Point light Pos",Vector) = (0,0,0,1)
@@ -22,7 +25,14 @@
 	}
 		SubShader
 		 {
-			 Tags { "RenderType" = "Opaque" "RenderPipeline" = "UniversalPipeline" }
+			 Tags { 
+				 "RenderPipeline" = "UniversalPipeline" "RenderType" = "Transparent" 
+				 "UniversalMaterialType" = "Unlit" "Queue" = "Transparent" 
+			 }
+			 LOD 100
+
+			 ZWrite Off
+			 Blend srcAlpha OneMinusSrcAlpha
 
 			 Pass
 			 {
@@ -30,6 +40,7 @@
 				 #pragma vertex vert
 				 #pragma fragment frag
 				 #pragma multi_compile __ POINT_LIGHT_ON 
+				 #pragma multi_compile __ DIRECTIONAL_LIGHT_ON
 				 #pragma multi_compile __ DIRECTIONAL_LIGHT_ON
 				 #include "UnityCG.cginc"
 
@@ -61,6 +72,7 @@
 				 }
 
 				 fixed4 _objectColor;
+				 float _alpha;
 
 				 float _ambientInt;//How strong it is?
 				 fixed4 _ambientColor;
@@ -94,7 +106,6 @@
 					 float3 specularComp = float4(0, 0, 0, 1);
 					 float3 lightColor;
 					 float3 lightDir;
-	 #if DIRECTIONAL_LIGHT_ON
 
 					 //Directional light properties
 					 lightColor = _directionalLightColor.xyz;
@@ -117,8 +128,8 @@
 
 					 //Sum
 					 finalColor += clamp(float4(_directionalLightIntensity * (difuseComp + specularComp),1),0,1);
-	 #endif
-	 #if POINT_LIGHT_ON
+
+
 					 //Point light properties
 					 lightColor = _pointLightColor.xyz;
 					 lightDir = _pointLightPos - i.wPos;
@@ -157,11 +168,10 @@
 					 finalColor += clamp(float4(_pointLightIntensity * (difuseComp + BRDF) + mainTexColor, 1), 0, 1);
 					 //finalColor += clamp(float4(_pointLightIntensity * (difuseComp + specularComp), 1), 0, 1);
 
+					 finalColor *= _objectColor;
+					 finalColor = float4(finalColor.rgb, _alpha);
 
-	 #endif
-					 //pointLight
-
-					 return finalColor * _objectColor;
+					 return finalColor;
 				 }
 				 ENDHLSL
 			 }
