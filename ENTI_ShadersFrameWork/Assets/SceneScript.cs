@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SceneScript : MonoBehaviour
 {
     public Material blurMat;
-    public MeshRenderer vertexAnimColumn;
+    //public MeshRenderer vertexAnimColumn;
 
     private Material savedMat;
     private Color bloomColor;
@@ -16,16 +16,18 @@ public class SceneScript : MonoBehaviour
     private Material savedVertexAnimMat;
 
     [SerializeField] private float timer = 0;
+    [SerializeField] float speed = 0.01f;
+    [SerializeField] float blurAnimMaxTime = 3;
     [SerializeField] private bool incrementOrDecrement;
     private Color EndColor;
 
     private void Start()
     {
         savedMat = new Material(blurMat);
-        savedVertexAnimMat = new Material(vertexAnimColumn.material);
-        vertexAnimColumn.material = savedVertexAnimMat;
+        //savedVertexAnimMat = new Material(vertexAnimColumn.material);
+        //vertexAnimColumn.material = savedVertexAnimMat;
 
-        EndColor = Color.red;
+        EndColor = Color.white;
 
         bloomColor = savedMat.GetColor("_BloomColor");
         bloomIntensity = savedMat.GetFloat("_BloomGlow");
@@ -43,10 +45,10 @@ public class SceneScript : MonoBehaviour
             bloomColor = Color.Lerp(bloomColor, EndColor, Time.deltaTime * 0.5f);
             
             if (intensity < blurMat.GetFloat("_intensity"))
-                intensity += Time.deltaTime * 0.01f;
+                intensity += Time.deltaTime * speed;
 
             timer += Time.deltaTime;
-            if (timer >= 2)
+            if (timer >= blurAnimMaxTime)
                 incrementOrDecrement = true;
         }
         else
@@ -54,7 +56,7 @@ public class SceneScript : MonoBehaviour
             bloomColor = Color.Lerp(bloomColor, blurMat.GetColor("_BloomColor"), Time.deltaTime * 0.5f);
             
             if(intensity > 0.0f)
-                intensity -= Time.deltaTime * 0.01f;
+                intensity -= Time.deltaTime * speed;
 
             timer -= Time.deltaTime;
             if (timer <= 0)
@@ -66,6 +68,6 @@ public class SceneScript : MonoBehaviour
         savedMat.SetFloat("_intensity", intensity);
         savedMat.SetFloat("_blend", blend);
 
-        savedVertexAnimMat.SetFloat("_time", Time.timeSinceLevelLoad);
+        //savedVertexAnimMat.SetFloat("_time", Time.timeSinceLevelLoad);
     }
 }

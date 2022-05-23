@@ -63,6 +63,7 @@
     <None Include="Assets\Shaders\Phong.shader" />
     <None Include="Assets\Shaders\Phong Transparent.shader" />
     <None Include="Assets\Shaders\BlurForRenderTexture.shader" />
+    <None Include="Assets\Shaders\VertexAnimWithPhong Transparent.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

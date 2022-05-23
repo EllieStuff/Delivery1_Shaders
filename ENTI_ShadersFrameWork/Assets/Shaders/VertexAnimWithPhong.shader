@@ -19,14 +19,15 @@
 		_directionalLightColor("Directional light Color",Color) = (0,0,0,1)
 		_directionalLightIntensity("Directional light Intensity",Float) = 1
 
-		_bumpStretch("Bump strecth", Float) = 0.1
-		_bumpSize("Bump size", Float) = 2
-		_time("Time Since Start", Float) = 0.1
+		_speed("Speed", Float) = 5
+		_frequency("Frequency", Float) = 2
+		_range("Range", Float) = 0.02
 
 	}
 		SubShader
 		 {
 			 Tags { "RenderType" = "Opaque" "RenderPipeline" = "UniversalPipeline" }
+			 LOD 100
 
 			 Pass
 			 {
@@ -52,25 +53,24 @@
 					 float3 wPos : TEXCOORD2;
 				 };
 
-				 float _time;
-				 float _bumpStretch;
-				 float _bumpSize;
+
+				 float _speed;
+				 float _frequency;
+				 float _range;
 
 				 v2f vert(appdata v)
 				 {
 					 v2f o;
 					 o.vertex = UnityObjectToClipPos(v.vertex);
-					 //o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 					 o.uv = v.uv;
 					 o.worldNormal = UnityObjectToWorldNormal(v.normal);
 					 o.wPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 
-					 float sinTime = sin(_time) * 200;
-					 float curve = clamp(cos(clamp(_bumpStretch * (o.uv.g - (sqrt((sinTime * sinTime) + (5 * 5)) - 2)), -3.14, 3.14)), 0, 1);
-					 float3 normal = v.normal * _bumpSize;
-					 //o.wPos += mul(unity_ObjectToWorld, normal * curve).xyz;
-
-					 o.vertex += UnityObjectToClipPos(float4((normal * curve), 0));
+					 float timer = _Time.y * _speed;
+					 float waver = _range * sin(timer + v.vertex.x * _frequency);
+					 v.vertex.y = v.vertex.y + waver;
+					 o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+					 o.uv = v.uv;
 
 					 return o;
 				 }
@@ -109,7 +109,6 @@
 					 float3 specularComp = float4(0, 0, 0, 1);
 					 float3 lightColor;
 					 float3 lightDir;
-	 #if DIRECTIONAL_LIGHT_ON
 
 					 //Directional light properties
 					 lightColor = _directionalLightColor.xyz;
@@ -132,8 +131,7 @@
 
 					 //Sum
 					 finalColor += clamp(float4(_directionalLightIntensity * (difuseComp + specularComp),1),0,1);
-	 #endif
-	 #if POINT_LIGHT_ON
+
 					 //Point light properties
 					 lightColor = _pointLightColor.xyz;
 					 lightDir = _pointLightPos - i.wPos;
@@ -172,8 +170,6 @@
 					 finalColor += clamp(float4(_pointLightIntensity * (difuseComp + BRDF) + mainTexColor, 1), 0, 1);
 					 //finalColor += clamp(float4(_pointLightIntensity * (difuseComp + specularComp), 1), 0, 1);
 
-
-	 #endif
 					 //pointLight
 
 					 return finalColor * _objectColor;
