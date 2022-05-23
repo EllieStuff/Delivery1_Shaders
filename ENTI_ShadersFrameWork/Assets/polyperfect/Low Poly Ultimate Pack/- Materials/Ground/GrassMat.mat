@@ -44,8 +44,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 5e76d267923a5e54ab5b59ddf7238f0b, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: fb27797b386fb5d49ab666a94d955ae5, type: 3}
+        m_Scale: {x: 0, y: 0}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -104,12 +104,12 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _alpha: 1
-    - _ambientInt: 0.25
-    - _diffuseInt: 1
-    - _directionalLightIntensity: 0.03
+    - _ambientInt: 0.391
+    - _diffuseInt: 0
+    - _directionalLightIntensity: 0.05
     - _materialQ: 1
     - _pointLightIntensity: 1.5
-    - _scecularExp: 2
+    - _scecularExp: 1.2
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
@@ -118,7 +118,7 @@ Material:
     - _ambientColor: {r: 0, g: 0, b: 0, a: 1}
     - _directionalLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _directionalLightDir: {r: 0, g: 1, b: 0, a: 1}
-    - _objectColor: {r: 0.9433962, g: 0.9433962, b: 0.9433962, a: 1}
+    - _objectColor: {r: 1, g: 1, b: 1, a: 1}
     - _pointLightColor: {r: 0, g: 1, b: 0.8066883, a: 1}
     - _pointLightPos: {r: 0, g: 13, b: 0, a: 1}
   m_BuildTextureStacks: []

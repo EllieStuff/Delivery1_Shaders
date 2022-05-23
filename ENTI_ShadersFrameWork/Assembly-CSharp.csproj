@@ -61,6 +61,7 @@
   <ItemGroup>
     <None Include="Assets\Shaders\VertexAnimWithPhong.shader" />
     <None Include="Assets\Shaders\Phong.shader" />
+    <None Include="Assets\Shaders\Phong Transparent.shader" />
     <None Include="Assets\Shaders\BlurForRenderTexture.shader" />
   </ItemGroup>
   <ItemGroup>

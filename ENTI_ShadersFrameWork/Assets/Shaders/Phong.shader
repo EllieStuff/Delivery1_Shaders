@@ -5,7 +5,6 @@
 
 		_MainTex("Main Texture", 2D) = "" {}
 		_objectColor("Main color",Color) = (0,0,0,1)
-		_alpha("Alpha", Range(0,1)) = 1
 		
 		_ambientInt("Ambient int", Range(0,1)) = 0.25
 		_ambientColor("Ambient Color", Color) = (0,0,0,1)
@@ -26,13 +25,9 @@
 		SubShader
 		 {
 			 Tags { 
-				 "RenderPipeline" = "UniversalPipeline" "RenderType" = "Transparent" 
-				 "UniversalMaterialType" = "Unlit" "Queue" = "Transparent" 
+				 "RenderPipeline" = "UniversalPipeline" "RenderType" = "Opaque" 
 			 }
 			 LOD 100
-
-			 ZWrite Off
-			 Blend srcAlpha OneMinusSrcAlpha
 
 			 Pass
 			 {
@@ -169,7 +164,6 @@
 					 //finalColor += clamp(float4(_pointLightIntensity * (difuseComp + specularComp), 1), 0, 1);
 
 					 finalColor *= _objectColor;
-					 finalColor = float4(finalColor.rgb, _alpha);
 
 					 return finalColor;
 				 }
