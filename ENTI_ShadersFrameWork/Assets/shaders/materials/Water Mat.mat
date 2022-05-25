@@ -108,6 +108,8 @@ Material:
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _ScrollXSpeed: 0.47
+    - _ScrollYSpeed: 0
     - _Smoothness: 0.598
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

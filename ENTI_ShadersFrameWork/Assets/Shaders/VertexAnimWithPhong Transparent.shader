@@ -23,6 +23,8 @@
 		_speed("Speed", Float) = 5
 		_frequency("Frequency", Float) = 2
 		_range("Range", Float) = 0.02
+		_ScrollXSpeed("Texture Scroll X", Range(0,10)) = 0
+		_ScrollYSpeed("Texture Scroll Y", Range(0,10)) = 0
 
 	}
 		SubShader
@@ -100,11 +102,16 @@
 				 float _materialQ;
 				 Texture2D _MainTex;
 				 SamplerState sampler_MainTex;
+				 float _ScrollXSpeed;
+				 float _ScrollYSpeed;
 				 //float4 samplera = TEXTURE2D_SAMPLER2D(_mainTexture, sampler_MainTex);
 
 				 fixed4 frag(v2f i) : SV_Target
 				 {
-
+					 float xScrollValue = _ScrollXSpeed * _Time;
+					 float yScrollValue = _ScrollYSpeed * _Time;
+					 fixed2 scrolledUV = i.uv;
+					 scrolledUV += fixed2(xScrollValue, yScrollValue);
 
 					 //3 phong model light components
 					 //We assign color to the ambient term		
@@ -174,7 +181,7 @@
 					 float geometry = dot(i.worldNormal, lightDir) * dot(i.worldNormal, viewVec);
 					 float distribution = alpha2 / (PI * pow(pow(dot(i.worldNormal, halfVec), 2) * (alpha2 - 1) + 1, 2));
 					 float BRDF = (fresnel * geometry * distribution) / (4 * dot(i.worldNormal, lightDir) * dot(i.worldNormal, viewVec));
-					 float4 mainTexColor = _MainTex.Sample(sampler_MainTex, i.uv);
+					 float4 mainTexColor = _MainTex.Sample(sampler_MainTex, scrolledUV);
 					 finalColor += clamp(float4(_pointLightIntensity * (difuseComp + BRDF) + mainTexColor, 1), 0, 1);
 					 //finalColor += clamp(float4(_pointLightIntensity * (difuseComp + specularComp), 1), 0, 1);
 
